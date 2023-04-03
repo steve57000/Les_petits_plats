@@ -16,9 +16,9 @@ class FilterRecipes {
     }
 
     async filterRecipes(optionValue, option) {
-        this.allInputList.forEach(input => {
+        for(let input of this.allInputList){
             input.disabled = false
-        })
+        }
         const AdaptedFilterLib = new FilterRecipeAdapter(this.Recipes, option, optionValue)
         const FilteredRecipes = await AdaptedFilterLib.filterByOption()
 
@@ -46,28 +46,27 @@ class FilterRecipes {
                 this.$wrapperListUstensils.innerHTML = ''
                 this.$wrapperListIngredients.innerHTML = ''
                 this.$wrapperListAppliances.innerHTML = ''
+                console.log(this.allInputList)
 
-                this.allInputList.forEach(input => {
+                for(let input of this.allInputList){
                     input.disabled = true
-                })
+                }
 
                 const spanMessage = document.createElement('span')
                 spanMessage.innerHTML = 'Vous ne pouvez plus ajouter de filtre'
-
                 this.$wrapperListUstensils.innerHTML = 'Filtre ustensile impossible, 1 recette restante'
                 this.$wrapperListIngredients.innerHTML = 'Filtre ingrédient impossible, 1 recette restante'
                 this.$wrapperListAppliances.innerHTML = 'Filtre apparareils impossible, 1 recette restante'
-
                 FilteredRecipes.forEach(Recipe => {
                     const Template = new RecipesCards(Recipe)
                     this.$recipesWrapper.appendChild(Template.createRecipeCard())
                 })
             }
             else{
-                FilteredRecipes.forEach(Recipe => {
+                for(let Recipe of FilteredRecipes) {
                     const Template = new RecipesCards(Recipe)
                     this.$recipesWrapper.appendChild(Template.createRecipeCard())
-                })
+                }
                 this.createDropdownList(FilteredRecipes)
             }
 
@@ -106,17 +105,17 @@ class FilterRecipes {
             wrapperList.innerHTML = `Oups...Je ne trouve pas d'${msgList}`
         }
         else{
-            FilteredRecipes.forEach(list => {
+            for(let list of FilteredRecipes) {
                 const Template = new DropdownList(list, wrapperList)
                 wrapperList.appendChild((Template.createDropdownList()))
-            })
+            }
             this.onClickItem()
         }
     }
 
     onSearchDropdownList(){
         const getInputDropdown = document.querySelectorAll('#search-ingredient, #search-appliance, #search-ustensil')
-        getInputDropdown.forEach(input => {
+        for(let input of getInputDropdown) {
             input.addEventListener('input',  async e => {
                 const inputTarget = e.target
                 let inputValue = e.target.value
@@ -128,7 +127,7 @@ class FilterRecipes {
                     await this.filterListItem('', option)
                 }
             })
-        })
+        }
     }
 
     createDropdownList(recipes){
@@ -136,21 +135,21 @@ class FilterRecipes {
         let fullUstensil = []
         let fullAppliance = []
         const data = fetchDataFilter(recipes)
-        data.FullIngredient.forEach(ingredientFilterList => {
+        for(let ingredientFilterList of data.FullIngredient) {
             fullIngredient.push(ingredientFilterList)
             const Template = new DropdownList(ingredientFilterList, this.$wrapperListIngredients)
             this.$wrapperListIngredients.appendChild((Template.createDropdownList()))
-        })
-        data.FullAppliances.forEach(applianceFilterList => {
+        }
+        for(let applianceFilterList of data.FullAppliances) {
             fullAppliance.push(applianceFilterList)
             const Template = new DropdownList(applianceFilterList, this.$wrapperListAppliances)
             this.$wrapperListAppliances.appendChild((Template.createDropdownList()))
-        })
-        data.FullUstensils.forEach(ustensilFilterList => {
+        }
+        for(let ustensilFilterList of data.FullUstensils) {
             fullUstensil.push(ustensilFilterList)
             const Template = new DropdownList(ustensilFilterList, this.$wrapperListUstensils)
             this.$wrapperListUstensils.appendChild((Template.createDropdownList()))
-        })
+        }
         this.FullIngredient = new Set(fullIngredient)
         this.FullUstensil = new Set(fullUstensil)
         this.FullAppliance = new Set(fullAppliance)
@@ -167,14 +166,14 @@ class FilterRecipes {
             if(optionValue.length > 2) {
                 if(document.querySelector('.tag')){
                     const tagElement = document.querySelectorAll('.tag')
-                    tagElement.forEach(tag => {
+                    for(let tag of tagElement) {
                         const tagInfo = [{
                             'value' : tag.textContent,
                             'wrapperTag' : tag.getAttribute('data-list'),
                             'typeFilter': tag.getAttribute('data-type')
                         }]
                         this.getTag(tagInfo)
-                    })
+                    }
                 }
                 else{
                     await this.filterRecipes(optionValue, option)
@@ -189,7 +188,7 @@ class FilterRecipes {
     onRemoveTag() {
         if(document.querySelector('.button-remove')){
             const tagDom = document.querySelectorAll('.button-remove')
-            tagDom.forEach(closeTag => {
+            for(let closeTag of tagDom) {
                 closeTag.addEventListener('click', async e => {
                     const elementTarget = e.target
                     const parentRemove = elementTarget.parentNode
@@ -213,7 +212,7 @@ class FilterRecipes {
                         await this.getTagFilter(option)
                     }
                 })
-            })
+            }
         }
     }
 
@@ -223,7 +222,7 @@ class FilterRecipes {
         if (document.querySelector('.tag')) {
             // Alors je récupère tout les tags
             const tagElement = document.querySelectorAll('.tag')
-            tagElement.forEach(tag => {
+            for(let tag of tagElement) {
                 // Pour chaque tag je crée un tableau de données
                 const tagInfo = [{
                     'value': tag.textContent, // Je récupère la valeur du tag
@@ -234,7 +233,7 @@ class FilterRecipes {
                 }]
                 // Et enfin je libère ma fonction, je délègue la recherche des recettes
                 this.getTag(tagInfo)
-            })
+            }
         } else {
             // Sinon aucun tag existe, je peux filtrer et retourner toutes les recettes
             await this.filterRecipes('', option)
@@ -243,7 +242,7 @@ class FilterRecipes {
 
     onClickItem(){
         const itemslist = document.querySelectorAll('.select-items')
-        itemslist.forEach(itemList => {
+        for(let itemList of itemslist) {
             itemList.addEventListener('click', (e) => {
                 const element = e.target
                 const tagElement = new ListItemSelect(element)
@@ -258,7 +257,7 @@ class FilterRecipes {
                     this.onRemoveTag()
                 }
             })
-        })
+        }
     }
 
     getTag(tagInfo){
@@ -266,7 +265,7 @@ class FilterRecipes {
         let valid = false
 
         // const domSelectorContainerTag = tagInfo.wrapperTag
-        tagInfo.forEach(tag => {
+        for(let tag of tagInfo) {
             const domElement = document.querySelector(`${tag.wrapperTag}`)
             console.log(domElement)
             if (domElement.childNodes.length === 0 && !document.querySelector('.tag')) {
@@ -276,7 +275,7 @@ class FilterRecipes {
             else {
                 const getTag = document.querySelectorAll('.tag')
                 let existTag
-                getTag.forEach(tagValue => {
+                for(let tagValue of getTag) {
                     console.log(tagValue.parentElement)
                     const newTag = {
                         'value' : tagValue.textContent,
@@ -285,7 +284,7 @@ class FilterRecipes {
                     }
                     listTag.push(newTag)
                     existTag = tag.value.toLowerCase() !== newTag.value.toLowerCase()
-                })
+                }
                 if(existTag) {
                     valid = true
                     listTag.push(tag)
@@ -294,7 +293,7 @@ class FilterRecipes {
                     valid = false
                 }
             }
-        })
+        }
         if(valid){
             const newArrayList = new Set(listTag)
             const option = 'all-filter'
