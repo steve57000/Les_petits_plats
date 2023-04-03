@@ -1,0 +1,115 @@
+@import url("filtres.css");
+@import url("cardRecipes.css");
+@import url("addListItem.css");
+
+:root {
+    --grey-light: #E7E7E7;
+    --grey-medium: #C7BEBE;
+    --blue-box: #3282F7;
+    --green-box: #68D9A4;
+    --red-box: #ED6454;
+}
+
+@font-face {
+    font-family: 'boldFont';
+    src:
+        local('Lato'),
+        local('Lato-Bold'),
+        url('../assets/fonts/Lato-Bold.ttf') format('ttf');
+    font-size: 18px;
+}
+
+@font-face {
+    font-family: 'regularFont';
+    src:
+        local('../assets/fonts/Lato'),
+        local('../assets/fonts/Lato-Regular'),
+        url('../assets/fonts/Lato-Regular.ttf') format('ttf');
+    font-size: 12px;
+}
+
+body {
+    max-width: 1240px;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    font-family: 'regularFont', sans-serif;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #D04F4F;
+    font-size: 2.625em;
+    margin-top: 0;
+}
+
+article {
+    max-width: 380px;
+    width: 100%;
+    height: 364px;
+    border-radius: 5px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.article-vide {
+    width: 100%;
+    height: 50%;
+}
+
+article h2 {
+    font-size: 1.125em;
+    font-weight: normal;
+    max-width: 90%;
+}
+
+#main {
+    width: 100%;
+}
+
+#search-recipe {
+    width: 100%;
+    height: 69px;
+    border-radius: 5px;
+}
+
+#search-recipe:hover,
+#search-recipe:focus {
+    border-color: var(--red-box);
+}
+
+.border-none {
+    border: 2px solid transparent;
+}
+
+.form-search-principal {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.label-search {
+    position: absolute;
+    right: 25px;
+    top: 30px;
+}
+
+#search-icon {
+    display: block;
+    width: 33px;
+    height: 33px;
+}
+
+.container-dropdown {
+    position: absolute;
+    padding: 20px 0 0 10px;
+}
+
+ul li{
+    font-weight: 400;
+}

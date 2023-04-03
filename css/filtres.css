@@ -1,0 +1,138 @@
+.bg-blue {
+    background-color: var(--blue-box);
+    color: white;
+}
+
+.bg-green {
+    background-color: var(--green-box);
+    color: white;
+}
+
+.bg-red {
+    background-color: var(--red-box);
+    color: white;
+}
+
+.container-items-selected {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.container-search {
+    display: inline-block;
+    border-radius: 5px;
+    padding: 20px 20px;
+    margin: 0 20px 0 0;
+}
+
+.item-list {
+    display: none;
+    max-width: 650px;
+    max-height: 320px;
+    width:100%;
+    height: 100%;
+    padding: 0;
+}
+
+.item-list.show {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    overflow-y: scroll;
+}
+
+.form-search{
+    min-width: 130px;
+    min-height: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;}
+
+.showView {
+    max-width: 670px;
+    max-height: 370px;
+}
+
+.form-search-container {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'boldFont', sans-serif;
+}
+
+.form-search label {
+    text-align: center;
+}
+
+.form-search input {
+    display: none;
+    z-index: 10;
+    font-size: 18px;
+}
+
+.form-search input::placeholder {
+    color: rgba(255, 255, 255, 0.64);
+}
+
+.form-search input:focus {
+    outline: none
+}
+
+.displayLabel {
+    display: none;
+}
+
+.form-search .label-inactive {
+    display: none;
+}
+
+.form-search .input-active {
+    display: block;
+    border: none;
+}
+
+#error-message {
+    color: var(--red-box);
+    padding: 20px 0 0 10px;
+}
+
+.select-items {
+    padding: 10px;
+    min-width: 190px;
+    max-width: 195px;
+}
+
+/* width */
+.item-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.item-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px 2px #303030;
+    border-radius: 10px;
+}
+
+/* Handle */
+.item-list::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}
+
+.button-dropdown-menu {
+    width: 18px;
+    height: 18px;
+    background-image: url("/assets/icons/down-chevron.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(100%)
+}
+
+.button-dropdown-menu.show-active {
+    background-image: url("/assets/icons/up-arrows.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

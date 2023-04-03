@@ -1,0 +1,44 @@
+#container-article {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-top: 150px;
+}
+
+.bground-grey-light {
+    background-color: var(--grey-light);
+}
+
+.bground-grey-medium {
+    background-color: var(--grey-medium);
+}
+
+.container-title-times, .container-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.container-title-times {
+    align-items: center;
+}
+
+.container-info {
+    font-size: 0.75em;
+    height: 120px;
+}
+.container-ingredients, .recipe-description {
+    margin: 0;
+    padding: 0;
+    min-width: 45%;
+    overflow-y: scroll;
+}
+
+.recipe-description{
+    padding-right: 10px;
+}
+
+.list-recipe {
+    display: flex;
+}
