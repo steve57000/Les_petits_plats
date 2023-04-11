@@ -31,14 +31,26 @@
 .container-ingredients, .recipe-description {
     margin: 0;
     padding: 0;
-    min-width: 45%;
-    overflow-y: scroll;
-}
+    max-width: 45%;
+    max-height: 100px;
+    height: 100%;
 
-.recipe-description{
-    padding-right: 10px;
+}
+.recipe-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
 }
 
 .list-recipe {
-    display: flex;
+    display: flow-root;
+
+}
+
+.times-icons {
+    width: 25px;
+    height: 25px;
+    margin-right: 5px;
 }
