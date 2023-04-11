@@ -5,6 +5,7 @@ class App {
         this.FullRecipes = []
     }
 
+    // Fonction pour récupérer la data
     async fetchAllData() {
         const allData = await this._recipesApi.getRecipes()
         // Je décharge la création de la data, selon le type, dans mon factory
@@ -14,6 +15,7 @@ class App {
     }
 
     async main(){
+        // J'appel ma fonction pour récupérer les données
         await this.fetchAllData()
         const sectionRecipes = document.getElementById('container-article')
 
