@@ -17,10 +17,14 @@ class RecipesCards{
         const containerTimes = document.createElement('div');
         containerTimes.className = 'container-times';
 
-        const createTimesIcon = document.createElement('span');
+        const createTimesIcon = document.createElement('img');
+        addMultiplesAttributs(createTimesIcon,{
+            'src': '../assets/icons/horloge.png',
+            'alt': ''
+        })
         createTimesIcon.className = 'times-icons';
 
-        const createTimes = document.createElement('span');
+        const createTimes = document.createElement('strong');
         createTimes.innerHTML = `${this._recipe.time} min`;
         createTimes.className = 'times';
 
@@ -40,14 +44,14 @@ class RecipesCards{
             list.className = 'list-recipe'
             // Si dans la liste d'ingrédient, il n'y a pas de quantité ni de mesure d'unité
             if(!ingredientUnit && !ingredientQuantity){
-                list.innerHTML = `<strong>${ingredientIngredient}</strong>`
+                list.innerHTML = `<strong>${ingredientIngredient} :</strong>`
             }
             // Sinon Si dans la liste d'ingredient, il n'y a pas de mesure d'unité et il y a une quantité disponible
             else if(!ingredientUnit && ingredientQuantity){
-                list.innerHTML = `<strong>${ingredientIngredient}</strong> ${ingredientQuantity}`
+                list.innerHTML = `<strong>${ingredientIngredient} :</strong> ${ingredientQuantity}`
             }
             else{
-                list.innerHTML = `<strong>${ingredientIngredient}</strong> ${ingredientQuantity} ${ingredientUnit}`
+                list.innerHTML = `<strong>${ingredientIngredient} :</strong> ${ingredientQuantity} ${ingredientUnit}`
             }
             containerIngredient.appendChild(list)
         })

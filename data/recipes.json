@@ -84,7 +84,7 @@
                     "unit" : "ml"
                 },
                 {
-                    "ingredient": "Coulis de tomate",
+                    "ingredient": "Coulis de tomates",
                     "quantity" : 25,
                     "unit" : "cl"
                 },
@@ -103,7 +103,7 @@
                 }
             ],
             "time": 80,
-            "description": "Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomate, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz",
+            "description": "Découper le poulet en morceaux, les faire dorer dans une cocotte avec de l'huile d'olive. Salez et poivrez. Une fois doré, laisser cuire en ajoutant de l'eau. Au bout de 30 minutes, ajouter le coulis de tomates, le lait de coco ainsi que le poivron et l'oignon découpés en morceaux. Laisser cuisiner 30 minutes de plus. Servir avec du riz",
             "appliance": "Cocotte",
             "ustensils": ["couteau"]
         },{
@@ -233,7 +233,7 @@
                 {
                     "ingredient": "Chocolat au lait",
                     "quantity": 300,
-                    "unit": "grammes"
+                    "unit": "gr"
                 },
                 {
                     "ingredient": "Crème liquide",
@@ -243,7 +243,7 @@
                 {
                     "ingredient": "Beurre",
                     "quantity": "30",
-                    "unit": "grammes"
+                    "unit": "gr"
                 },
                 {
                     "ingredient": "Fraise",
@@ -316,7 +316,7 @@
                     "ingredient": "Vinaigre Balsamic"
                 },
                 {
-                    "ingredient": "Huile d'olives"
+                    "ingredient": "Huile d'olive"
                 },
                 {
                     "ingredient": "Basilic"
@@ -337,7 +337,7 @@
                     "quantity": "1"
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 4.5,
                     "unit": "kg"
                 },
@@ -369,12 +369,12 @@
                 {
                     "ingredient": "Tomates cerises",
                     "quantity": 250,
-                    "unit": "grammes"
+                    "unit": "gr"
                 },
                 {
                     "ingredient": "Mozzarella",
                     "quantity": 150,
-                    "unit": "grammes"
+                    "unit": "gr"
                 },
                 {
                     "ingredient": "Jambon de parme",
@@ -382,7 +382,7 @@
                     "unit": "tr"
                 },
                 {
-                    "ingredient": "Pommes",
+                    "ingredient": "Pomme",
                     "quantity": 1
                 },
                 {
@@ -410,7 +410,7 @@
                     "unit": "gr"
                 },
                 {
-                    "ingredient": "Pommes",
+                    "ingredient": "Pomme",
                     "quantity": 8
                 },
                 {
@@ -440,7 +440,7 @@
                     "unit": "gr"
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 200,
                     "unit": "gr"
                 },
@@ -721,7 +721,7 @@
                     "quantity": 2
                 },
                 {
-                    "ingredient": "Coulis de tomate",
+                    "ingredient": "Coulis de tomates",
                     "quantity": 300,
                     "unit":"gr"
                 },
@@ -905,7 +905,7 @@
                     "quantity": 6
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 1
                 },
                 {
@@ -970,7 +970,7 @@
                     "quantity": 3
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 400,
                     "unit": "gr"
                 },
@@ -1061,7 +1061,7 @@
                     "quantity": 2
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 2
                 },
                 {
@@ -1199,7 +1199,7 @@
                     "quantity": 6
                 },
                 {
-                    "ingredient": "Pommes de terre",
+                    "ingredient": "Pomme de terre",
                     "quantity": 1
                 },
                 {
@@ -1215,7 +1215,7 @@
                 {
                     "ingredient": "Cumin",
                     "quantity": 1,
-                    "unit": "cuillères à café"
+                    "unit": "cuillères à c."
                 },
                 {
                     "ingredient": "Noix de muscade",
@@ -1282,7 +1282,7 @@
                     "unit": "gr"
                 },
                 {
-                    "ingredient": "Huile d'olives",
+                    "ingredient": "Huile d'olive",
                     "quantity": 25,
                     "unit": "cl"
                 },
@@ -1315,7 +1315,7 @@
                 {
                     "ingredient": "Pain",
                     "quantity": 6,
-                    "unit":"tranches"
+                    "unit":"tr"
                 },
                 {
                     "ingredient": "Lait",
@@ -1409,7 +1409,7 @@
                 {
                     "ingredient": "Chocolat noir",
                     "quantity": 100,
-                    "unit": "g"
+                    "unit": "gr"
                 },
                 {
                     "ingredient": "Sucre vanillé",
@@ -1666,7 +1666,7 @@
                     "quantity": 2
                 },
                 {
-                    "ingredient": "Kiwis",
+                    "ingredient": "Kiwi",
                     "quantity": 3
                 },
                 {
