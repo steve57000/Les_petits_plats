@@ -25,7 +25,9 @@
     margin: 0 20px 20px 0;
     max-width: 650px;
 }
-
+.container-search:hover {
+    box-shadow: var(--shadow-box);
+}
 .item-list {
     display: none;
     max-width: 630px;
@@ -72,8 +74,9 @@
 .form-search-container {
     display: flex;
     justify-content: space-between;
-    font-weight: 500;
+    font-weight: 700;
     text-shadow: 1px 1px 1px #949494;
+    letter-spacing: 0.1em;
     width: 101%;
 }
 
