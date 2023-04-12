@@ -55,11 +55,10 @@ class FilterRecipes {
                 this.$wrapperListUstensils.innerHTML = ''
                 this.$wrapperListIngredients.innerHTML = ''
                 this.$wrapperListAppliances.innerHTML = ''
-                console.log(this.allInputList)
 
-                for(let input of this.allInputList){
+                this.allInputList.forEach(input => {
                     input.disabled = true
-                }
+                })
                 // j'ajoute un message en remplacement de la liste, afin d'indiqué à l'utilisateur que les filtres ne sont plus possible
                 const spanMessage = document.createElement('span')
                 spanMessage.innerHTML = 'Vous ne pouvez plus ajouter de filtre'
@@ -176,14 +175,14 @@ class FilterRecipes {
             if(optionValue.length > 2) {
                 if(document.querySelector('.tag')){
                     const tagElement = document.querySelectorAll('.tag')
-                    for(let tag of tagElement) {
+                    tagElement.forEach(tag => {
                         const tagInfo = [{
                             'value' : tag.textContent,
                             'wrapperTag' : tag.getAttribute('data-list'),
                             'typeFilter': tag.getAttribute('data-type')
                         }]
                         this.getTag(tagInfo)
-                    }
+                    })
                 }
                 else{
                     await this.filterRecipes(optionValue, option)
@@ -285,7 +284,7 @@ class FilterRecipes {
             else {
                 const getTag = document.querySelectorAll('.tag')
                 let existTag
-                for(let tagValue of getTag) {
+                getTag.forEach(tagValue => {
                     console.log(tagValue.parentElement)
                     const newTag = {
                         'value' : tagValue.textContent,
@@ -294,7 +293,7 @@ class FilterRecipes {
                     }
                     listTag.push(newTag)
                     existTag = tag.value.toLowerCase() !== newTag.value.toLowerCase()
-                }
+                })
                 if(existTag) {
                     valid = true
                     listTag.push(tag)
