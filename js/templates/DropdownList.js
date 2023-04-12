@@ -12,7 +12,6 @@ class DropdownList {
     }
 
     createDropdownList() {
-
         const elementList = document.createElement('li')
 
         elementList.setAttribute('value', this._listItems)
@@ -24,7 +23,6 @@ class DropdownList {
             'data-list': this._container.id,
         })
         this.dropdownListShow()
-        // this.itemEventListenerClick(elementList)
         return elementList
     }
 }

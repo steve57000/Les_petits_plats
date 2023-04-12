@@ -1,3 +1,4 @@
+// Contient un formulaire de selection ainsi que le code pour les filtres des recettes
 class FilterRecipes {
     constructor(Recipes) {
         this.Recipes = Recipes
@@ -14,34 +15,42 @@ class FilterRecipes {
         this.FullUstensil = []
         this.FullAppliance = []
     }
-
+    // Fonction pour faire le lien avec l'adapter, selon l'objet filtre créer par l'utilisateur, et retourner le nouveau template
     async filterRecipes(optionValue, option) {
-        for(let input of this.allInputList){
+        this.allInputList.forEach(input => {
             input.disabled = false
-        }
+        })
+        // appel de l'adapter avec l'objet client
         const AdaptedFilterLib = new FilterRecipeAdapter(this.Recipes, option, optionValue)
+        // attente du retour de l'adapté
         const FilteredRecipes = await AdaptedFilterLib.filterByOption()
-
+        //Appel Fonction d'éffacement des recettes contenu en element du dom
         this.clearRecipesWrapper()
 
+        // Si le retour du résultat du filtre ne renvoi aucune recette
         if(FilteredRecipes.size === 0){
-            const listRandomName = []
-            const listRandomIngredient = []
+            const listRandomName = [] // j'initie une list vide de nom de recette
+            const listRandomIngredient = [] // j'initie une liste vide de nom d'ingredient
             this.Recipes.forEach(recipe => {
+                // J'ajoute dans chaque tableau, les noms de recettes et ingrédient
                 listRandomName.push(recipe._name)
                 const ingredient = recipe._ingredients
                 ingredient.forEach(ingredient => listRandomIngredient.push(ingredient['ingredient']))
             })
+            // je crée une variable qui prendra un nom au hasard dans le tableau
             const randomNameRecipeOne = listRandomName[Math.floor(Math.random()*(50 - 25) + 25)]
             const randomNameRecipeTwo = listRandomIngredient[Math.floor(Math.random()*(25 - 1) + 1)]
+            // Je crée mon element dom qui contiendra le message d'erreur
             const spanMsgError = document.createElement('span')
             spanMsgError.innerHTML = `Aucune recettes trouvées, essayer plutôt ceci: "${randomNameRecipeOne}" ou "${randomNameRecipeTwo} "`
+            // Et enfin j'injecte l'element erreur dans le dom
             this.$wrapperErrorMessage.appendChild(spanMsgError)
             setTimeout(()=> {
                 this.$wrapperErrorMessage.removeChild(spanMsgError)
             },5000)
         }
         else{
+            // S'il y a une seul recette restante, je désactive la liste de filtre ainsi que l'input de chaque liste
             if(FilteredRecipes.size === 1){
                 this.$wrapperListUstensils.innerHTML = ''
                 this.$wrapperListIngredients.innerHTML = ''
@@ -51,7 +60,7 @@ class FilterRecipes {
                 for(let input of this.allInputList){
                     input.disabled = true
                 }
-
+                // j'ajoute un message en remplacement de la liste, afin d'indiqué à l'utilisateur que les filtres ne sont plus possible
                 const spanMessage = document.createElement('span')
                 spanMessage.innerHTML = 'Vous ne pouvez plus ajouter de filtre'
                 this.$wrapperListUstensils.innerHTML = 'Filtre ustensile impossible, 1 recette restante'
@@ -63,20 +72,22 @@ class FilterRecipes {
                 })
             }
             else{
-                for(let Recipe of FilteredRecipes) {
+                // Sinon il y a plus de 1 recette
+                FilteredRecipes.forEach(Recipe => {
                     const Template = new RecipesCards(Recipe)
                     this.$recipesWrapper.appendChild(Template.createRecipeCard())
-                }
+                })
                 this.createDropdownList(FilteredRecipes)
             }
 
         }
     }
-
+    // Fonction pour faire le lien avec l'adapter, selon l'objet filtre créer par l'utilisateur, et retourner le nouveau modèle de liste
     async filterListItem(optionValue, option) {
         let wrapperList
         let arrayList
         let msgList
+        // On vérifie la valeur d'option
         switch(option) {
             case 'list-ingredient':
                 wrapperList = this.$wrapperListIngredients
@@ -100,34 +111,33 @@ class FilterRecipes {
         const FilteredRecipes = await AdaptedFilterLib.filterByOption()
 
         this.clearListWrapper(wrapperList)
-
+        this.$searchInputPrincipal.value = ''
         if(FilteredRecipes.size <= 0){
             wrapperList.innerHTML = `Oups...Je ne trouve pas d'${msgList}`
         }
         else{
-            for(let list of FilteredRecipes) {
+            FilteredRecipes.forEach(list => {
                 const Template = new DropdownList(list, wrapperList)
                 wrapperList.appendChild((Template.createDropdownList()))
-            }
+            })
             this.onClickItem()
         }
     }
 
     onSearchDropdownList(){
         const getInputDropdown = document.querySelectorAll('#search-ingredient, #search-appliance, #search-ustensil')
-        for(let input of getInputDropdown) {
-            input.addEventListener('input',  async e => {
+        getInputDropdown.forEach(input => {
+            input.addEventListener('input', async e => {
                 const inputTarget = e.target
                 let inputValue = e.target.value
                 const option = inputTarget.getAttribute('data-list')
                 if (inputValue.length > 2) {
                     await this.filterListItem(inputValue, option)
-                }
-                else {
+                } else {
                     await this.filterListItem('', option)
                 }
             })
-        }
+        })
     }
 
     createDropdownList(recipes){
@@ -135,21 +145,21 @@ class FilterRecipes {
         let fullUstensil = []
         let fullAppliance = []
         const data = fetchDataFilter(recipes)
-        for(let ingredientFilterList of data.FullIngredient) {
+        data.FullIngredient.forEach(ingredientFilterList => {
             fullIngredient.push(ingredientFilterList)
             const Template = new DropdownList(ingredientFilterList, this.$wrapperListIngredients)
             this.$wrapperListIngredients.appendChild((Template.createDropdownList()))
-        }
-        for(let applianceFilterList of data.FullAppliances) {
+        })
+        data.FullAppliances.forEach(applianceFilterList => {
             fullAppliance.push(applianceFilterList)
             const Template = new DropdownList(applianceFilterList, this.$wrapperListAppliances)
             this.$wrapperListAppliances.appendChild((Template.createDropdownList()))
-        }
-        for(let ustensilFilterList of data.FullUstensils) {
+        })
+        data.FullUstensils.forEach(ustensilFilterList => {
             fullUstensil.push(ustensilFilterList)
             const Template = new DropdownList(ustensilFilterList, this.$wrapperListUstensils)
             this.$wrapperListUstensils.appendChild((Template.createDropdownList()))
-        }
+        })
         this.FullIngredient = new Set(fullIngredient)
         this.FullUstensil = new Set(fullUstensil)
         this.FullAppliance = new Set(fullAppliance)
@@ -188,7 +198,7 @@ class FilterRecipes {
     onRemoveTag() {
         if(document.querySelector('.button-remove')){
             const tagDom = document.querySelectorAll('.button-remove')
-            for(let closeTag of tagDom) {
+            tagDom.forEach(closeTag => {
                 closeTag.addEventListener('click', async e => {
                     const elementTarget = e.target
                     const parentRemove = elementTarget.parentNode
@@ -212,7 +222,7 @@ class FilterRecipes {
                         await this.getTagFilter(option)
                     }
                 })
-            }
+            })
         }
     }
 
@@ -222,7 +232,7 @@ class FilterRecipes {
         if (document.querySelector('.tag')) {
             // Alors je récupère tout les tags
             const tagElement = document.querySelectorAll('.tag')
-            for(let tag of tagElement) {
+            tagElement.forEach( tag => {
                 // Pour chaque tag je crée un tableau de données
                 const tagInfo = [{
                     'value': tag.textContent, // Je récupère la valeur du tag
@@ -233,7 +243,7 @@ class FilterRecipes {
                 }]
                 // Et enfin je libère ma fonction, je délègue la recherche des recettes
                 this.getTag(tagInfo)
-            }
+            })
         } else {
             // Sinon aucun tag existe, je peux filtrer et retourner toutes les recettes
             await this.filterRecipes('', option)
@@ -242,7 +252,7 @@ class FilterRecipes {
 
     onClickItem(){
         const itemslist = document.querySelectorAll('.select-items')
-        for(let itemList of itemslist) {
+        itemslist.forEach(itemList => {
             itemList.addEventListener('click', (e) => {
                 const element = e.target
                 const tagElement = new ListItemSelect(element)
@@ -257,7 +267,7 @@ class FilterRecipes {
                     this.onRemoveTag()
                 }
             })
-        }
+        })
     }
 
     getTag(tagInfo){
@@ -265,7 +275,7 @@ class FilterRecipes {
         let valid = false
 
         // const domSelectorContainerTag = tagInfo.wrapperTag
-        for(let tag of tagInfo) {
+        tagInfo.forEach(tag => {
             const domElement = document.querySelector(`${tag.wrapperTag}`)
             console.log(domElement)
             if (domElement.childNodes.length === 0 && !document.querySelector('.tag')) {
@@ -293,7 +303,7 @@ class FilterRecipes {
                     valid = false
                 }
             }
-        }
+        })
         if(valid){
             const newArrayList = new Set(listTag)
             const option = 'all-filter'

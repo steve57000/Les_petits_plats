@@ -4,6 +4,49 @@ function addMultiplesAttributs(element, attributes) {
     }
 }
 
+// Je récupère la liste cliqué (ingredients, ustensiles ou appareil)
+const handleBtnClick = (e) => {
+    toggleShow(e.target)
+}
+
+// Je récupère l'element cliqué de la fonction handleBtnClick
+// Et je cible la list correspondant à l'élément et lui ajoute la class show
+const toggleShow = (e) => {
+    const dropDownTarget = e.parentNode.parentNode.childNodes[3]
+    const container = e.parentNode.parentNode
+    const listId =  dropDownTarget.id
+    const inputSelected = dropDownTarget.previousElementSibling.childNodes[3]
+    const labelSelected = dropDownTarget.previousElementSibling.childNodes[1]
+
+    const elementShow = document.querySelector('.show')
+    const elementShowActive = document.querySelector('.show-active')
+    const elementInputActive = document.querySelector('.input-active')
+    const elementLabelActive = document.querySelector('.label-inactive')
+
+    if(elementShowActive){
+        if(elementShow.id !== listId){
+            removeShow(elementShow.id, 'show')
+            removeShow(elementShowActive.id, 'show-active')
+            removeShow(elementInputActive.id, 'input-active')
+            removeShow(elementLabelActive.id, 'label-inactive')
+        }
+
+    }
+    if(listId === 'list-ingredient' ||
+        listId ==='list-appliance' ||
+        listId ==='list-ustensil'){
+        dropDownTarget.classList.toggle('show')
+        e.classList.toggle('show-active')
+        inputSelected.classList.toggle('input-active')
+        labelSelected.classList.toggle('label-inactive')
+        container.classList.toggle('showView')
+    }
+}
+
+const removeShow = (element, className) => {
+    const showElement = document.getElementById(element)
+    showElement.classList.remove(className)
+}
 
 // const mergeSort = array => {
 //     // divise le tableau jusqu'à ce qu'il n'y ait qu'un seul élément
@@ -61,48 +104,6 @@ function addMultiplesAttributs(element, attributes) {
 //     return array.reduce((prev, cur) => (prev.indexOf(cur) === -1) ? [...prev, cur] : prev, [])
 // }
 
-// Je récupère la liste cliqué (ingredients, ustensiles ou appareil)
-const handleBtnClick = (e) => {
-    toggleShow(e.target)
-}
 
-// Je récupère l'element cliqué de la fonction handleBtnClick
-// Et je cible la list correspondant à l'élément et lui ajoute la class show
-const toggleShow = (e) => {
-    const dropDownTarget = e.parentNode.parentNode.childNodes[3]
-    const container = e.parentNode.parentNode
-    const listId =  dropDownTarget.id
-    const inputSelected = dropDownTarget.previousElementSibling.childNodes[3]
-    const labelSelected = dropDownTarget.previousElementSibling.childNodes[1]
-
-    const elementShow = document.querySelector('.show')
-    const elementShowActive = document.querySelector('.show-active')
-    const elementInputActive = document.querySelector('.input-active')
-    const elementLabelActive = document.querySelector('.label-inactive')
-
-    if(elementShowActive){
-        if(elementShow.id !== listId){
-            removeShow(elementShow.id, 'show')
-            removeShow(elementShowActive.id, 'show-active')
-            removeShow(elementInputActive.id, 'input-active')
-            removeShow(elementLabelActive.id, 'label-inactive')
-        }
-
-    }
-    if(listId === 'list-ingredient' ||
-        listId ==='list-appliance' ||
-        listId ==='list-ustensil'){
-        dropDownTarget.classList.toggle('show')
-        e.classList.toggle('show-active')
-        inputSelected.classList.toggle('input-active')
-        labelSelected.classList.toggle('label-inactive')
-        container.classList.toggle('showView')
-    }
-}
-
-const removeShow = (element, className) => {
-    const showElement = document.getElementById(element)
-    showElement.classList.remove(className)
-}
 
 

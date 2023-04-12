@@ -11,7 +11,9 @@ const fetchDataFilter = (ListRecipes) => {
         const recipeUstensils = recipe._ustensils
         fullRecipes.push(recipe)
         recipeIngredient.forEach(listIngredients => {
+            // Je récupère le nom de l'ingredient et le passe en minuscule
             const ingredients = listIngredients['ingredient'].toLowerCase()
+            // J'ajoute le nom de l'ingrédient, en copiant la 1ére lettre en majuscule en position 0, et en supprimant sa minuscule décaler en position 1
             fullListIngredient.push(ingredients.charAt(0).toUpperCase() + ingredients.slice(1))
         })
         recipeUstensils.forEach(ustensils => {
@@ -30,35 +32,5 @@ const fetchDataFilter = (ListRecipes) => {
     const FullAppliances = new Set(fullListAppliances.sort())
     const FullUstensils = new Set(fullListUstencils.sort())
     return {FullRecipes:FullRecipes, FullAppliances:FullAppliances, FullIngredient:FullIngredient, FullUstensils:FullUstensils}
-
-}
-
-
-const createListItem = (recipes) => {
-    const data = fetchDataFilter(recipes)
-    const listFiltre = [
-        {
-            data: data.FullIngredient,
-            container: document.getElementById('list-ingredient')
-        },
-        {
-            data: data.FullUstensils,
-            container: document.getElementById('list-ustensil')
-        },
-        {
-            data: data.FullAppliances,
-            container: document.getElementById('list-appliance')
-        }
-    ]
-    listFiltre.forEach(listItem => {
-        console.log(listItem.data)
-        const Filter = new FilterRecipesItems(listItem.data, listItem.container, data.FullRecipes)
-        Filter.render()
-        listItem.container.innerHTML = ''
-        listItem.data.forEach(item => {
-            const Template = new DropdownList(item, listItem.container)
-            listItem.container.appendChild(Template.createDropdownList())
-        })
-    })
 
 }
