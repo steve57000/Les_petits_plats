@@ -45,9 +45,6 @@ class FilterRecipes {
             spanMsgError.innerHTML = `Aucune recettes trouvées, essayer plutôt ceci: "${randomNameRecipeOne}" ou "${randomNameRecipeTwo} "`
             // Et enfin j'injecte l'element erreur dans le dom
             this.$wrapperErrorMessage.appendChild(spanMsgError)
-            setTimeout(()=> {
-                this.$wrapperErrorMessage.removeChild(spanMsgError)
-            },5000)
         }
         else{
             // S'il y a une seul recette restante, je désactive la liste de filtre ainsi que l'input de chaque liste
@@ -202,7 +199,8 @@ class FilterRecipes {
                     const elementTarget = e.target
                     const parentRemove = elementTarget.parentNode
                     const hasPreviousTag = parentRemove.previousElementSibling
-
+                    console.log(parentRemove)
+                    console.log(hasPreviousTag)
                     parentRemove.remove()
 
                     if(hasPreviousTag){
@@ -276,7 +274,6 @@ class FilterRecipes {
         // const domSelectorContainerTag = tagInfo.wrapperTag
         tagInfo.forEach(tag => {
             const domElement = document.querySelector(`${tag.wrapperTag}`)
-            console.log(domElement)
             if (domElement.childNodes.length === 0 && !document.querySelector('.tag')) {
                 valid = true
                 listTag.push(tag)
@@ -285,7 +282,6 @@ class FilterRecipes {
                 const getTag = document.querySelectorAll('.tag')
                 let existTag
                 getTag.forEach(tagValue => {
-                    console.log(tagValue.parentElement)
                     const newTag = {
                         'value' : tagValue.textContent,
                         'wrapperTag' : tagValue.getAttribute('data-list'),

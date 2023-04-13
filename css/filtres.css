@@ -47,16 +47,6 @@
 
 }
 
-@keyframes widthAnimated {
-    from {
-        width: 0;
-        height: 0;
-    }
-    to {
-        width: 100%;
-       height: 100%;
-    }
-}
 .form-search{
     min-width: 130px;
     min-height: 20px;
@@ -74,14 +64,17 @@
 .form-search-container {
     display: flex;
     justify-content: space-between;
-    font-weight: 700;
-    text-shadow: 1px 1px 1px #949494;
-    letter-spacing: 0.1em;
     width: 101%;
 }
 
 .form-search label {
     text-align: center;
+}
+
+.form-search label,
+.tag {
+    font-weight: 700;
+    font-size: 1.125em;
 }
 
 .form-search input {
@@ -140,16 +133,12 @@
 }
 
 .button-dropdown-menu {
-    width: 18px;
-    height: 18px;
-    background-image: url("/assets/icons/down-chevron.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: invert(100%)
+    width: 20px;
+    height: 20px;
+    filter: invert(100%);
+    transform: rotate(180deg)
 }
 
 .button-dropdown-menu.show-active {
-    background-image: url("/assets/icons/up-arrows.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+    transform: rotate(0deg)
 }

@@ -21,11 +21,11 @@
 
 .tag, .button-remove {
     margin-right: 5px;
+    width: 20px;
+    height: 20px;
 }
 
-.button-remove {
-    width: 10px;
-    height: 10px;
-    background-image: url('../assets/icons/close.svg');
-    background-size: cover;
+.button-remove svg {
+    width: 20px;
+    height: 20px;
 }

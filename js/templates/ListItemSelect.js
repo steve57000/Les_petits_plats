@@ -35,6 +35,7 @@ class ListItemSelect{
         const buttonRemoveTag = document.createElement('span')
         buttonRemoveTag.setAttribute('role', 'button')
         buttonRemoveTag.className = 'button-remove'
+        buttonRemoveTag.style.backgroundImage = "url('./assets/icons/circle-xmark-regular.svg')"
 
         containerTag.appendChild(elementTagName)
         containerTag.appendChild(buttonRemoveTag)
