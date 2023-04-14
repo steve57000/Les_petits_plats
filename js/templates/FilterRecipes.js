@@ -57,11 +57,9 @@ class FilterRecipes {
                     input.disabled = true
                 })
                 // j'ajoute un message en remplacement de la liste, afin d'indiqué à l'utilisateur que les filtres ne sont plus possible
-                const spanMessage = document.createElement('span')
-                spanMessage.innerHTML = 'Vous ne pouvez plus ajouter de filtre'
-                this.$wrapperListUstensils.innerHTML = 'Filtre ustensile impossible, 1 recette restante'
-                this.$wrapperListIngredients.innerHTML = 'Filtre ingrédient impossible, 1 recette restante'
-                this.$wrapperListAppliances.innerHTML = 'Filtre apparareils impossible, 1 recette restante'
+                this.$wrapperListUstensils.innerHTML = `<span class="error-message-list">Ustensiles indisponibles, une seule recette restante</span>`
+                this.$wrapperListIngredients.innerHTML = `<span class="error-message-list">Ingrédients indisponibles, une seule recette restante</span>`
+                this.$wrapperListAppliances.innerHTML = `<span class="error-message-list">Appareils indisponibles, une seule recette restante</span>`
                 FilteredRecipes.forEach(Recipe => {
                     const Template = new RecipesCards(Recipe)
                     this.$recipesWrapper.appendChild(Template.createRecipeCard())
@@ -75,7 +73,6 @@ class FilterRecipes {
                 })
                 this.createDropdownList(FilteredRecipes)
             }
-
         }
     }
     // Fonction pour faire le lien avec l'adapter, selon l'objet filtre créer par l'utilisateur, et retourner le nouveau modèle de liste
@@ -119,7 +116,7 @@ class FilterRecipes {
             this.onClickItem()
         }
     }
-
+    // écouteur d'événement de l'input de la liste de filtre
     onSearchDropdownList(){
         const getInputDropdown = document.querySelectorAll('#search-ingredient, #search-appliance, #search-ustensil')
         getInputDropdown.forEach(input => {
@@ -135,12 +132,16 @@ class FilterRecipes {
             })
         })
     }
-
+    // création de chaque liste de filtre, selon les recettes actuelles
     createDropdownList(recipes){
+        // J'initie un tableau vide pour chaque liste
         let fullIngredient = []
         let fullUstensil = []
         let fullAppliance = []
+        // Je contiens dans une variable ma fonction qui se chargera de séparer les données des recettes reçues,
+        // les ingredients, appareils et ustensiles
         const data = fetchDataFilter(recipes)
+        //Je parcours le tableau data, (data = {FullRecipes: Set(50), FullAppliances: Set(11), FullIngredient: Set(114)...})
         data.FullIngredient.forEach(ingredientFilterList => {
             fullIngredient.push(ingredientFilterList)
             const Template = new DropdownList(ingredientFilterList, this.$wrapperListIngredients)
@@ -162,7 +163,7 @@ class FilterRecipes {
         this.onClickItem()
         this.onSearchDropdownList()
     }
-
+    // Écouteur d'événement de l'input principal
     onChangeFilter() {
         this.$searchInputPrincipal
         .addEventListener('input', async (e) => {
@@ -190,7 +191,7 @@ class FilterRecipes {
             }
         })
     }
-
+    // Écouteur d'événement pour la suppression de tag
     onRemoveTag() {
         if(document.querySelector('.button-remove')){
             const tagDom = document.querySelectorAll('.button-remove')
@@ -199,8 +200,7 @@ class FilterRecipes {
                     const elementTarget = e.target
                     const parentRemove = elementTarget.parentNode
                     const hasPreviousTag = parentRemove.previousElementSibling
-                    console.log(parentRemove)
-                    console.log(hasPreviousTag)
+
                     parentRemove.remove()
 
                     if(hasPreviousTag){
@@ -222,7 +222,6 @@ class FilterRecipes {
             })
         }
     }
-
     // Function pour vérifier si des tags existent et retourner les recettes filtré
     async getTagFilter(option) {
         // Si un element dans le document correspond à mon selecteur .tag
@@ -246,7 +245,7 @@ class FilterRecipes {
             await this.filterRecipes('', option)
         }
     }
-
+    // Écouteur d'événement du click sur le choix de la liste de filtre
     onClickItem(){
         const itemslist = document.querySelectorAll('.select-items')
         itemslist.forEach(itemList => {
@@ -266,12 +265,11 @@ class FilterRecipes {
             })
         })
     }
-
+    // Function d'ajout de tag
     getTag(tagInfo){
         let listTag = []
         let valid = false
 
-        // const domSelectorContainerTag = tagInfo.wrapperTag
         tagInfo.forEach(tag => {
             const domElement = document.querySelector(`${tag.wrapperTag}`)
             if (domElement.childNodes.length === 0 && !document.querySelector('.tag')) {
@@ -306,7 +304,7 @@ class FilterRecipes {
             return true
         }
     }
-
+    // Nettoyage de la section du dom contenant les recettes
     clearRecipesWrapper() {
         this.$recipesWrapper.innerHTML = ""
         this.$wrapperListIngredients.innerHTML = ""
@@ -314,7 +312,7 @@ class FilterRecipes {
         this.$wrapperListUstensils.innerHTML = ""
         this.$wrapperErrorMessage.innerHTML = ''
     }
-
+    // Nettoyage de la section du dom contenant les listes de filtre
     clearListWrapper(wrapper) {
         wrapper.innerHTML = ''
     }
