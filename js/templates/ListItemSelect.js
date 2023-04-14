@@ -8,7 +8,6 @@ class ListItemSelect{
     }
 
     createTagItem(){
-
         const containerTag = document.createElement('div')
         containerTag.className = 'container-tag'
         switch(this.typeListFilter) {
@@ -32,10 +31,9 @@ class ListItemSelect{
         elementTagName.setAttribute('data-type', this.typeListFilter)
         elementTagName.setAttribute('data-list', this.containerId)
 
-        const buttonRemoveTag = document.createElement('span')
-        buttonRemoveTag.setAttribute('role', 'button')
+        const buttonRemoveTag = document.createElement('img')
         buttonRemoveTag.className = 'button-remove'
-        buttonRemoveTag.style.backgroundImage = "url('./assets/icons/circle-xmark-regular.svg')"
+        buttonRemoveTag.src = "./assets/icons/circle-xmark-regular.svg"
 
         containerTag.appendChild(elementTagName)
         containerTag.appendChild(buttonRemoveTag)
