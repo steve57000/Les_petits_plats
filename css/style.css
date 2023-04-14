@@ -9,6 +9,7 @@
     --green-box: #68D9A4;
     --red-box: #ED6454;
     --shadow-box: -4px 4px 6px rgb(172, 172, 172);
+    --gap: 3%;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
     margin: 0 auto;
     font-family: 'Lato', sans-serif;
     font-weight: 400;
+    font-size: 1em;
 }
 
 header {
@@ -32,13 +34,16 @@ h1 {
 
 h2 {
     max-width: 70%;
-    font-weight: 700;
-    font-size: 1.125em;
+    font-weight: 400;
+    font-size: 1.325em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+p {
+    font-family: "Roboto", serif;
+    font-size: 0.70em;
+}
 article {
     max-width: 380px;
     width: 100%;
@@ -99,12 +104,7 @@ article:hover{
     padding: 20px 0 0 10px;
 }
 
-.container-dropdown ul li{
-    font-weight: 400;
-}
-
 .container-times{
     display: flex;
     align-items: center;
 }
-

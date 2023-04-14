@@ -1,9 +1,9 @@
 #container-article {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 0 10px;
+    justify-content: center;
     margin-top: 150px;
+    gap: var(--gap);
 }
 
 .bground-grey-light {
@@ -25,16 +25,21 @@
 }
 
 .container-info {
-    font-size: 0.75em;
     height: 120px;
+}
+.container-ingredients{
+    font-size: 0.75em;
+}
+.container-ingredients strong{
+    font-size: 1.05em;
 }
 .container-ingredients, .recipe-description {
     margin: 0;
     padding: 0;
     max-width: 45%;
-    max-height: 108px;
+    max-height: 100px;
     height: 100%;
-
+    text-align: left;
 }
 .recipe-description {
     text-overflow: ellipsis;
@@ -46,7 +51,6 @@
 
 .list-recipe {
     display: flow-root;
-
 }
 
 .times-icons {
