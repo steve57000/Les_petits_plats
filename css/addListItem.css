@@ -27,9 +27,6 @@
 .button-remove {
     width: 20px;
     height: 20px;
+    cursor: pointer;
 }
 
-.button-remove svg {
-    width: 20px;
-    height: 20px;
-}

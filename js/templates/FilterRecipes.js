@@ -105,8 +105,8 @@ class FilterRecipes {
 
         this.clearListWrapper(wrapperList)
         this.$searchInputPrincipal.value = ''
-        if(FilteredRecipes.size <= 0){
-            wrapperList.innerHTML = `Oups...Je ne trouve pas d'${msgList}`
+        if(FilteredRecipes.size === 0){
+            wrapperList.innerHTML = `<span class="error-message-list">Oups...Je ne trouve pas d'${msgList}</span>`
         }
         else{
             FilteredRecipes.forEach(list => {

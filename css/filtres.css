@@ -113,6 +113,7 @@
     padding: 6px;
     min-width: 180px;
     max-width: 195px;
+    cursor: pointer;
 }
 
 /* width */
@@ -136,7 +137,8 @@
     width: 20px;
     height: 20px;
     filter: invert(100%);
-    transform: rotate(180deg)
+    transform: rotate(180deg);
+    cursor: pointer;
 }
 
 .button-dropdown-menu.show-active {
