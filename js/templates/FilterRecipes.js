@@ -242,7 +242,8 @@ class FilterRecipes {
             })
         } else {
             // Sinon aucun tag existe, je peux filtrer et retourner toutes les recettes
-            await this.filterRecipes('', option)
+            const valuePrincipal = this.$searchInputPrincipal.value
+            await this.filterRecipes(valuePrincipal, option)
         }
     }
     // Écouteur d'événement du click sur le choix de la liste de filtre
