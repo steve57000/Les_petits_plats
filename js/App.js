@@ -1,6 +1,6 @@
 class App {
     constructor() {
-        this._recipesApi = new RecipesApi('/data/recipes.json')
+        this._recipesApi = new RecipesApi('Les_petits_plats/data/recipes.json')
         // Recettes
         this.FullRecipes = []
     }
