@@ -19,7 +19,7 @@ class RecipesCards{
 
         const createTimesIcon = document.createElement('img');
         addMultiplesAttributs(createTimesIcon,{
-            'src': '/Les_ptits_plats/assets/icons/horloge.png',
+            'src': '/Les_petits_plats/assets/icons/horloge.png',
             'alt': ''
         })
         createTimesIcon.className = 'times-icons';
