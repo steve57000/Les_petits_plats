@@ -14,7 +14,7 @@ class Api {
                 const { recipes } = data
                 return recipes
             })
-            .catch(err => console.log('an error occurs', err))
+            .catch(err => console.log('an error occurs' + err))
     }
 }
 
